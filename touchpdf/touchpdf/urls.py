@@ -20,4 +20,5 @@ from iprint import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("application_form/", views.application_form, name="application_form"),
+    path("report/", views.report, name="report"),
 ]
