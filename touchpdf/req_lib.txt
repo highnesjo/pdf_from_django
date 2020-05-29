@@ -11,7 +11,6 @@ MarkupSafe==1.1.1
 panflute==1.12.5
 pdf417==0.8.0
 Pillow==7.1.2
-pypandoc @ file:///home/conda/feedstock_root/build_artifacts/pypandoc_1588623413975/work
 python-barcode==0.11.0
 python-dateutil==2.8.1
 python-docx==0.8.10
