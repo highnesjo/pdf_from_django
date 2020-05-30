@@ -9,6 +9,7 @@ from django.http import FileResponse
 import datetime
 import barcode
 from barcode.writer import ImageWriter
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -38,6 +39,7 @@ def convertpdf(document_name):
     output = subprocess.check_output(['libreoffice', '--convert-to', 'pdf' ,document_name])
 
 
+@csrf_exempt
 def application_form(request):
 
     if request.method == 'POST':
@@ -60,7 +62,7 @@ def application_form(request):
             sclass = 'Fourth'
 
         p = request.POST.get('application_no')
-        age = age_calc(pr('doc'))
+        age = age_calc(pr('dob'))
 
         text = "Application no: " + request.POST.get('application_no') + "-Name: "+ request.POST.get('name') + "-Gender :" + request.POST.get('gender') + "-Date of birth :"+ str(request.POST.get('dob'))+ "-Class on admission: "+ str(request.POST.get('coa')) + "-Aadhar: "+ str(request.POST.get('aadhar'))+"-Name of father: "+ request.POST.get('father')+"-Name of mother: "+ request.POST.get('mother') +"-Mobile: "+str(request.POST.get('mob'))+"-Address: "+request.POST.get('address')
         # Convert to code words
