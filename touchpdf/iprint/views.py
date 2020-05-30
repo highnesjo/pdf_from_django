@@ -59,7 +59,7 @@ def application_form(request):
         elif request.POST.get('coa') == '4':
             sclass = 'Fourth'
 
-        p = pr('apllication_no')
+        p = request.POST.get('application_no')
         age = age_calc(pr('doc'))
 
         text = "Application no: " + request.POST.get('application_no') + "-Name: "+ request.POST.get('name') + "-Gender :" + request.POST.get('gender') + "-Date of birth :"+ str(request.POST.get('dob'))+ "-Class on admission: "+ str(request.POST.get('coa')) + "-Aadhar: "+ str(request.POST.get('aadhar'))+"-Name of father: "+ request.POST.get('father')+"-Name of mother: "+ request.POST.get('mother') +"-Mobile: "+str(request.POST.get('mob'))+"-Address: "+request.POST.get('address')
@@ -69,7 +69,7 @@ def application_form(request):
         image = render_image(codes)  # Pillow Image object
         image.save('barcode.png')
 
-        context = {'p1':p1[:5] ,'p2':p[5:7] ,'p3': p[7:12] , 'name' : pr('name').upper(),'gender':pr('gender'),'a':aadhar,'father':pr('father'),'address':pr('address'),'mobile':pr('mob'),'mother':pr('mother'),'dob':pr('dob'),'age':age,'class':sclass}
+        context = {'p1':p[:5] ,'p2':p[5:7] ,'p3': p[7:12] , 'name' : pr('name').upper(),'gender':pr('gender'),'a':aadhar,'father':pr('father'),'address':pr('address'),'mobile':pr('mob'),'mother':pr('mother'),'dob':pr('dob'),'age':age,'class':sclass}
         doc.render(context)
         doc.replace_media('dummy.png','barcode.png')
         doc.save("admission_form_print.docx")
